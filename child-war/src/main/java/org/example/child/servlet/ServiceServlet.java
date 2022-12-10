@@ -1,10 +1,11 @@
 package org.example.child.servlet;
 
+import jakarta.servlet.ServletException;
 import org.example.parent.test.ParentTestClass;
 
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Random;
 import java.util.UUID;
@@ -19,5 +20,10 @@ public class ServiceServlet extends HttpServlet {
 		} catch (Throwable e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		resp.getWriter().write("child ok");
 	}
 }

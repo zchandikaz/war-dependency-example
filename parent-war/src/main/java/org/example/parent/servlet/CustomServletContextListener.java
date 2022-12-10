@@ -1,7 +1,7 @@
 package org.example.parent.servlet;
 
-import javax.servlet.ServletContextEvent;
-import javax.servlet.ServletContextListener;
+import jakarta.servlet.ServletContextEvent;
+import jakarta.servlet.ServletContextListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
