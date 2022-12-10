@@ -1,8 +1,7 @@
-package org.example.parent.servlet;
+package org.example.child.servlet;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -14,13 +13,7 @@ public class CustomServletContextListener implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        LOGGER.info("Parent-War Initialized !");
-        try {
-            Class.forName("org.example.ProxyClassLoader").getMethod("setForeignClassLoader", ClassLoader.class).invoke(null, this.getClass().getClassLoader());
-            LOGGER.log(Level.INFO, "Classloader registration success!", new Object[]{  });
-        } catch (Exception e) {
-            LOGGER.log(Level.WARNING, "ClassLoader registration failed!");
-        }
+        LOGGER.info("Child-War Initialized !");
     }
 
     @Override

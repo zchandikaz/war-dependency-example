@@ -10,28 +10,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>parent-war</artifactId>
-    <packaging>${packaging.type}</packaging>
+    <packaging>war</packaging>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-
-    <profiles>
-        <profile>
-            <id>parent-war</id>
-            <properties>
-                <packaging.type>war</packaging.type>
-            </properties>
-        </profile>
-        <profile>
-            <id>parent-jar</id>
-            <properties>
-                <packaging.type>jar</packaging.type>
-            </properties>
-        </profile>
-    </profiles>
 
     <build>
         <finalName>${artifactId}</finalName>

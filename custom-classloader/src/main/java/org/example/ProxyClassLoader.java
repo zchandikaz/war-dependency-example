@@ -25,19 +25,7 @@ public class ProxyClassLoader extends ClassLoader{
 
     @Override
     public Class<?> loadClass(String name) throws ClassNotFoundException {
-        return loadClass(name, foreignClassLoader, actualClassLoader);
-    }
-
-    private Class<?> loadClass(String name, ClassLoader p1ClassLoader, ClassLoader p2ClassLoader) throws ClassNotFoundException {
-        try {
-            try {
-                return p1ClassLoader.loadClass(name);
-            } catch (ClassNotFoundException ex) {
-                throw ex;
-            }
-        } catch (ClassNotFoundException e) {
-            return p2ClassLoader.loadClass(name);
-        }
+        return (foreignClassLoader == null ? actualClassLoader : foreignClassLoader).loadClass(name);
     }
 
     @Override
