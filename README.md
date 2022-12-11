@@ -18,7 +18,7 @@ So if we're sharing the same dependency between multiple contexts(WAR files), mo
 So above is just an intro, Let's say we have a scenario like this. I have two projects A and B. Both A and B packaged as WAR files and will be run in the tomcat. But I need to access classes in A from the B. 
 
 ### Approach 1
-We can create a jar from the A and add that as a "compile" scope dependency to the B. This way B can access any class in A. But all the classes in project A, will be defined twise in the runtime. Because now classes required for A loaded from A WebApp class loader and classes required for B loaded from B WebApp. Since A contains as a jar in the B, that won't be a problem. 
+We can create a jar from the A and add that as a "compile" scope dependency to the B. This way B can access any class in A. But all the classes in project A, will be defined twice in the runtime. Because now classes required for A loaded from A WebApp class loader and classes required for B loaded from B WebApp. Since A contains as a jar in the B, that won't be a problem. 
 
 But what if we need to access the same class, we need to access the same static variables, same singleton instances in A, for the B as well. Then this won't work. Because even fully qualified names of the classes are equal, classes are different. Because they are loaded from different loaders.
 
@@ -45,7 +45,7 @@ This way A can run independently and B can have A as a dependency as well.
 
 ## Approach 3 Implementation - Add A WAR as a dependency while running independently
 
-I have a project called "parent-war", Simple POST request implemented here. Fot any Prequest invocation, this will add a key value pair to a Map which is static. and located in a class Called "ParentTestClass". This class need to be accessed from another web application called "child-war". We'll have to set a custom class loader to the child-war, That custom class loader located in a separate project called "custom-classloader".
+I have a project called "parent-war", Simple POST request implemented here. For any POST request invocation, this will add a key value pair to a Map which is static. and located in a class Called "ParentTestClass". This class need to be accessed from another web application called "child-war". We'll have to set a custom class loader to the child-war, That custom class loader located in a separate project called "custom-classloader".
 
 ### Implement custom class loader
 
