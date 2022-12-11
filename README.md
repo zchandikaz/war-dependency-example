@@ -1,4 +1,4 @@
-# Add a war as a dependency to another
+# Add a running WAR as a runtime dependency to another WAR
 
 There are several ways to add dependencies in Java Enterprise applications. If we think from maven perspective, there are "compile" scoped dependencies and "provided" scoped dependencies. 
 
