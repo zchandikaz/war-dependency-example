@@ -79,7 +79,7 @@ In the constructor we have to set the parent ClassLoader, It's received to us in
 
 So in loadClass method any class load request received, will be sent to the foreignClassLoader(Parent-WAR) if it available.
 
-We have to package this project as jar and put this as a provided dependency in tomcat. Because this should be common for both WARs.
+We have to package this project as jar and put it as a provided dependency in tomcat. Because this should be common for both WARs.
 
 ```java
 public class ProxyClassLoader extends ClassLoader{
@@ -185,7 +185,7 @@ public class ProxyClassLoader extends ClassLoader{
 
 ### Parent WAR
 
-Parent WAR needs to be registered as the foreignClassLoader. So we've added a ServletContextListener like below to know the WAR is initialized. This file is webapps/WEB-INF/web.xml.
+Parent WAR needs to be registered as the foreignClassLoader. So we've added a ServletContextListener like below to make sure WAR is initialized. This file is webapps/WEB-INF/web.xml.
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -420,7 +420,7 @@ public class ServiceServlet extends HttpServlet {
 }
 ```
 
-So if this is successfully, we should be able to access ParentTestClass from the child-war and the map should be same for both WARs. We can test this out by sending request to each servlet. Both will print the entire map after the key value is inserted. 
+So if this worked successfully, we should be able to access ParentTestClass from the child-war and the map should be same for both WARs. We can test this out by sending request to each servlet. Both will print the entire map after the key value is inserted. 
 
 Finally, to run this, you'll need to add both war files into the tomcat webapps folder and need to add custom-classloader as provided dependency. If we take a new tomcat, that would not take any jar in tomcat/lib folder as provided dependency. So to make it happen, you'll need to create a setenv.sh in bin folder if not exists and add below line there.
 
