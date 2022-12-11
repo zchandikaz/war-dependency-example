@@ -4,7 +4,7 @@ There are several ways to add dependencies in Java Enterprise applications. If w
 
 I'm more focused about creating a web service(as a WAR) here. If we set the scope as "compile", You'll be abe to see the dependencies in the WAR file. Which means "compile" scope dependencies will be bundled with the WAR. In other hand, The dependencies with "provided" scope, will not be bundled with the WAR, and we'll have to provide those dependencies separately. 
 
-Also, this is how class loaders working in the tomcat.
+Also, this is how class loaders work in the tomcat.
 ![ClassLoader Hierarchy](res/img/img_cl_hierarchy.png)
 
 So any given class will first check in the WebApp ClassLoader, That class loader contains the class files of the code and the "compile" scope dependencies. If the given class not available in that ClassLoader, It'll be looked in the Common Class Loader, We have to put any "provided" scope dependency jars there.
@@ -43,7 +43,7 @@ This way A can run independently and B can have A as a dependency as well.
 ![Approach 3](res/img/img_a3.png)
 
 
-## Approach 3 Implementation - Add A WAR as a dependency while running independent
+## Approach 3 Implementation - Add A WAR as a dependency while running independently
 
 I have a project called "parent-war", Simple POST request implemented here. Fot any Prequest invocation, this will add a key value pair to a Map which is static. and located in a class Called "ParentTestClass". This class need to be accessed from another web application called "child-war". We'll have to set a custom class loader to the child-war, That custom class loader located in a separate project called "custom-classloader".
 
