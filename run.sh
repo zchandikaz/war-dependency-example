@@ -1,7 +1,11 @@
 # stop the running tomcat(docker container) if running
 docker ps |grep war-dependency-example_tomcat| awk '{print $1}'|xargs -i$ docker kill $
+docker images |grep war-dependency-example_tomcat| awk '{print $3}'|xargs -i$ docker rmi $ -f
 
-mvn clean install
+mvn clean install -f custom-classloader/pom.xml
+mvn clean install -f parent-war/pom.xml -P parent-jar
+mvn package -f parent-war/pom.xml -P parent-war
+mvn clean package -f child-war/pom.xml
 docker-compose up &
 
 echo "wait until tomcat is ready"
